@@ -206,16 +206,6 @@ StudentResFinderWebApp/
 http://localhost:8080/StudentResFinderWebApp
 ```
 
-## Team Roles (6 Members)
-
-| Member | Responsibility |
-|---|---|
-| You | Project setup, GitHub, integration |
-| Member 2 | Authentication |
-| Member 3 | Listings |
-| Member 4 | Search and filter |
-| Member 5 | DAO and database |
-| Member 6 | Security and admin |
 
 ## Key Concepts
 
