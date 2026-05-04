@@ -211,7 +211,7 @@ http://localhost:8080/StudentResFinderWebApp
 
 | Member          | Responsibility                                                  | Main Files / Tasks |
 |-----------------|------------------------------------------------------------------|-------------------|
-| LungeloMK       | Project setup, GitHub, integration, final testing, shared pages | README.md, index.jsp, dashboard pages, web.xml, integration fixes |
+| Mafuleka KL       | Project setup, GitHub, integration, final testing, shared pages | README.md, index.jsp, dashboard pages, web.xml, integration fixes |
 | Pulusa MM       | Authentication System                                           | User.java, AuthSB.java, LoginServlet.java, RegisterServlet.java, LogoutServlet.java, login.jsp, register.jsp |
 | Maleka K        | Listing Management System                                       | Listing.java, ListingSB.java, AddListingServlet.java, UpdateListingServlet.java, DeleteListingServlet.java, addListing.jsp, editListing.jsp, myListings.jsp |
 | Nkuna KF        | Discovery System                                                | SearchSB.java, ViewListingsServlet.java, ViewListingDetailsServlet.java, SearchServlet.java, FilterServlet.java, search.jsp, searchResults.jsp, viewListing.jsp |
