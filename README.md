@@ -205,7 +205,18 @@ StudentResFinderWebApp/
 ```text
 http://localhost:8080/StudentResFinderWebApp
 ```
+## Team Roles (6 Members)
 
+## Team Roles (6 Members)
+
+| Member          | Responsibility                                                  | Main Files / Tasks |
+|-----------------|------------------------------------------------------------------|-------------------|
+| LungeloMK       | Project setup, GitHub, integration, final testing, shared pages | README.md, index.jsp, dashboard pages, web.xml, integration fixes |
+| Pulusa MM       | Authentication System                                           | User.java, AuthSB.java, LoginServlet.java, RegisterServlet.java, LogoutServlet.java, login.jsp, register.jsp |
+| Maleka K        | Listing Management System                                       | Listing.java, ListingSB.java, AddListingServlet.java, UpdateListingServlet.java, DeleteListingServlet.java, addListing.jsp, editListing.jsp, myListings.jsp |
+| Nkuna KF        | Discovery System                                                | SearchSB.java, ViewListingsServlet.java, ViewListingDetailsServlet.java, SearchServlet.java, FilterServlet.java, search.jsp, searchResults.jsp, viewListing.jsp |
+| Ntshudishane P  | DAO + Database                                                  | DBConnection.java, UserDAO.java, ListingDAO.java, LandlordDAO.java, studentresfinder.sql |
+| Phelo KN        | Security + Admin System                                         | Admin.java, Landlord.java, VerificationSB.java, VerifyLandlordServlet.java, RejectLandlordServlet.java, verifyLandlords.jsp, GlassFish Realm configuration |
 
 ## Key Concepts
 
@@ -215,7 +226,22 @@ http://localhost:8080/StudentResFinderWebApp
 - DAO Pattern
 - Role-Based Access Control (RBAC)
 - GlassFish Realm
+- 
+## GitHub Collaboration Rules
 
+1. Always pull before working:
+   git pull origin main
+
+2. Work only on your assigned files.
+
+3. Do not rename folders without telling the group.
+
+4. Commit with clear messages.
+
+5. Push small changes often.
+
+6. If the project breaks after your push, report it immediately.
+   
 ## Summary
 
 StudentResFinderWebApp is a structured Java web application that:
