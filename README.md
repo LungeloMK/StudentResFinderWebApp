@@ -1,5 +1,10 @@
 # StudentResFinderWebApp
 
+*Prepared by Mafuleka KL*
+
+Project role: Project setup, GitHub, integration, final testing, shared pages.
+Deliverables: `README.md`, `index.jsp`, dashboard pages, `web.xml`, integration fixes.
+
 StudentResFinderWebApp is a Java web application that helps students find safe and convenient accommodation.  
 The system allows students to browse listings, landlords to manage accommodation, and admins to verify landlords to reduce scams.
 
@@ -11,6 +16,17 @@ The project follows an MVC architecture and combines four core systems:
 2. Listing Management System
 3. Discovery System
 4. Trust and Verification System
+
+## Team Roles
+
+| Member | Responsibility | Main Files / Tasks |
+|---|---|---|
+| Mafuleka KL | Project setup, GitHub, integration, final testing, shared pages, styling | `README.md`, `index.jsp`, dashboard pages, `styling.css`, `web.xml`, integration fixes |
+| Pulusa MM | Authentication System | `User.java`, `AuthSB.java`, `LoginServlet.java`, `RegisterServlet.java`, `LogoutServlet.java`, `login.jsp`, `register.jsp` |
+| Maleka K | Listing Management System | `Listing.java`, `ListingSB.java`, `AddListingServlet.java`, `UpdateListingServlet.java`, `DeleteListingServlet.java`, `addListing.jsp`, `editListing.jsp`, `myListings.jsp` |
+| Nkuna KF | Discovery System | `SearchSB.java`, `ViewListingsServlet.java`, `ViewListingDetailsServlet.java`, `SearchServlet.java`, `FilterServlet.java`, `search.jsp`, `searchResults.jsp`, `viewListing.jsp` |
+| Ntshudishane P | DAO + Database | `DBConnection.java`, `UserDAO.java`, `ListingDAO.java`, `LandlordDAO.java`, `studentresfinder.sql` |
+| Phelo KN | Security + Admin System | `Admin.java`, `Landlord.java`, `VerificationSB.java`, `VerifyLandlordServlet.java`, `RejectLandlordServlet.java`, `verifyLandlords.jsp`, GlassFish Realm configuration |
 
 ## Features
 
@@ -148,6 +164,8 @@ StudentResFinderWebApp/
 |       `-- RejectLandlordServlet.java
 |
 |-- web/
+|   |-- css/
+|   |   `-- styling.css
 |   |-- index.jsp
 |   |-- login.jsp
 |   |-- register.jsp
@@ -205,18 +223,6 @@ StudentResFinderWebApp/
 ```text
 http://localhost:8080/StudentResFinderWebApp
 ```
-## Team Roles (6 Members)
-
-## Team Roles (6 Members)
-
-| Member          | Responsibility                                                  | Main Files / Tasks |
-|-----------------|------------------------------------------------------------------|-------------------|
-| Mafuleka KL       | Project setup, GitHub, integration, final testing, shared pages | README.md, index.jsp, dashboard pages, web.xml, integration fixes |
-| Pulusa MM       | Authentication System                                           | User.java, AuthSB.java, LoginServlet.java, RegisterServlet.java, LogoutServlet.java, login.jsp, register.jsp |
-| Maleka K        | Listing Management System                                       | Listing.java, ListingSB.java, AddListingServlet.java, UpdateListingServlet.java, DeleteListingServlet.java, addListing.jsp, editListing.jsp, myListings.jsp |
-| Nkuna KF        | Discovery System                                                | SearchSB.java, ViewListingsServlet.java, ViewListingDetailsServlet.java, SearchServlet.java, FilterServlet.java, search.jsp, searchResults.jsp, viewListing.jsp |
-| Ntshudishane P  | DAO + Database                                                  | DBConnection.java, UserDAO.java, ListingDAO.java, LandlordDAO.java, studentresfinder.sql |
-| Phelo KN        | Security + Admin System                                         | Admin.java, Landlord.java, VerificationSB.java, VerifyLandlordServlet.java, RejectLandlordServlet.java, verifyLandlords.jsp, GlassFish Realm configuration |
 
 ## Key Concepts
 

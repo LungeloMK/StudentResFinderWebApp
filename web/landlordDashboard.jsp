@@ -1,0 +1,1 @@
+<%-- landlord dashboard placeholder --%>
