@@ -1,0 +1,19 @@
+Sun May 10 10:38:58 SAST 2026 : Apache Derby Network Server - 10.10.2.0 - (1582446) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Sun May 10 10:38:58 SAST 2026:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-019e-110a-253f-0000084d2d04 
+on database directory D:\INTProject\StudentResFinderWebApp\studentresfinder with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
+Loaded from file:/C:/Users/pertu/GlassFish_Server/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.12+8-LTS-286
+user.dir=C:\Users\pertu\GlassFish_Server\javadb
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=D:\INTProject\StudentResFinderWebApp
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun May 10 10:43:31 SAST 2026: Shutting down Derby engine
+----------------------------------------------------------------
+Sun May 10 10:43:31 SAST 2026:
+Shutting down instance a816c00e-019e-110a-253f-0000084d2d04 on database directory D:\INTProject\StudentResFinderWebApp\studentresfinder with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
