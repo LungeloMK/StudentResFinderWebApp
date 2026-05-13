@@ -2,67 +2,72 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-/**
- *
- * @author moses
- */
-@Entity
 public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
     private Long id;
-    private String fullname;
-    private String lastname;
+    private String fullName;
+    private String lastName;
     private String email;
-    private String password;
-    private Long phone;
-    
-    @Temporal(TemporalType.TIMESTAMP)
+    private String passwordHash;
+    private String salt;
+    private String phone;
+    private String role;
     private Date registrationDate;
 
     public User() {
     }
 
-    public User(Long id, String fullname, String lastname, String email, String password, Long phone, Date registrationDate) {
+    public User(Long id, String fullName, String lastName, String email, String passwordHash,
+            String salt, String phone, String role, Date registrationDate) {
         this.id = id;
-        this.fullname = fullname;
-        this.lastname = lastname;
+        this.fullName = fullName;
+        this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.passwordHash = passwordHash;
+        this.salt = salt;
         this.phone = phone;
+        this.role = role;
         this.registrationDate = registrationDate;
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public Long getId() {
+        return id;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getFullname() {
-        return fullname;
+        return fullName;
     }
 
     public void setFullname(String fullname) {
-        this.fullname = fullname;
+        this.fullName = fullname;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
 
     public String getEmail() {
@@ -73,53 +78,65 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
     public String getPassword() {
-        return password;
+        return passwordHash;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.passwordHash = password;
     }
 
-    public Long getPhone() {
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
-   
-    public Long getId() {
-        return id;
+
+    public void setPhone(Long phone) {
+        this.phone = phone == null ? null : String.valueOf(phone);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getRole() {
+        return role;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
-    @Override
-    public String toString() {
-        return "za.ac.tut.entity.User[ id=" + id + " ]";
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
-    
+
+    public boolean hasRole(String expectedRole) {
+        return role != null && role.equalsIgnoreCase(expectedRole);
+    }
+
+    public String getDisplayName() {
+        String name = fullName == null ? "" : fullName.trim();
+        String surname = lastName == null ? "" : lastName.trim();
+        return (name + " " + surname).trim();
+    }
 }

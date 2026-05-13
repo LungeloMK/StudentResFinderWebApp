@@ -1,4 +1,5 @@
 package servlet;
 
-public class FilterServlet {
+@javax.servlet.annotation.WebServlet(name = "FilterServlet", urlPatterns = {"/FilterServlet.do"})
+public class FilterServlet extends SearchServlet {
 }

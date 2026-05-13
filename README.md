@@ -1,21 +1,23 @@
 # StudentResFinderWebApp
 
-*Prepared by Mafuleka KL*
+Prepared by Mafuleka KL
 
-Project role: Project setup, GitHub, integration, final testing, shared pages.
-Deliverables: `README.md`, `index.jsp`, dashboard pages, `web.xml`, integration fixes.
+StudentResFinderWebApp is a Java EE web application for student accommodation discovery. It allows students to search available rooms, landlords to manage listings after verification, and admins to approve or reject landlord accounts before they can publish accommodation.
 
-StudentResFinderWebApp is a Java web application that helps students find safe and convenient accommodation.  
-The system allows students to browse listings, landlords to manage accommodation, and admins to verify landlords to reduce scams.
+## Current Status
 
-## Overview
+The project has been completed into a working end-to-end system with:
 
-The project follows an MVC architecture and combines four core systems:
-
-1. Authentication System
-2. Listing Management System
-3. Discovery System
-4. Trust and Verification System
+- full Java model, DAO, business, and servlet layers
+- Derby database schema and starter admin account
+- GlassFish file-realm login using role-based routing
+- student, landlord, and admin dashboards
+- listing add, edit, delete, search, and detail views
+- landlord verification and rejection workflow
+- modern full-width responsive JSP styling
+- custom StudentResFinder logo in the header
+- polished homepage with color, glass-style navigation, animations, and search entry point
+- basic security controls from the module notes
 
 ## Team Roles
 
@@ -25,220 +27,277 @@ The project follows an MVC architecture and combines four core systems:
 | Pulusa MM | Authentication System | `User.java`, `AuthSB.java`, `LoginServlet.java`, `RegisterServlet.java`, `LogoutServlet.java`, `login.jsp`, `register.jsp` |
 | Maleka K | Listing Management System | `Listing.java`, `ListingSB.java`, `AddListingServlet.java`, `UpdateListingServlet.java`, `DeleteListingServlet.java`, `addListing.jsp`, `editListing.jsp`, `myListings.jsp` |
 | Nkuna KF | Discovery System | `SearchSB.java`, `ViewListingsServlet.java`, `ViewListingDetailsServlet.java`, `SearchServlet.java`, `FilterServlet.java`, `search.jsp`, `searchResults.jsp`, `viewListing.jsp` |
-| Ntshudishane P | DAO + Database | `DBConnection.java`, `UserDAO.java`, `ListingDAO.java`, `LandlordDAO.java`, `studentresfinder.sql` |
-| Phelo KN | Security + Admin System | `Admin.java`, `Landlord.java`, `VerificationSB.java`, `VerifyLandlordServlet.java`, `RejectLandlordServlet.java`, `verifyLandlords.jsp`, GlassFish Realm configuration |
+| Ntshudishane P | DAO and Database | `DBConnection.java`, `UserDAO.java`, `ListingDAO.java`, `LandlordDAO.java`, `studentresfinder.sql` |
+| Phelo KN | Security and Admin System | `Admin.java`, `Landlord.java`, `VerificationSB.java`, `VerifyLandlordServlet.java`, `RejectLandlordServlet.java`, `verifyLandlords.jsp`, GlassFish realm configuration |
 
-## Features
+## Main Features
 
-### Authentication System
+### Authentication and Roles
 
-- User registration
-- User login
-- User logout
-- Role-based access control
-- Session handling
+- Register as a student or landlord
+- Login through the GlassFish file realm
+- Logout and session clearing
+- Role-based redirects after login
+- Student, landlord, and admin role checks
+- Landlord-only registration fields appear only when Landlord is selected
+- Public registration does not allow creating admin accounts
 
-### Listing Management System
+### Student Discovery
 
-- Add listing
-- Edit listing
-- Delete listing
-- View own listings
-
-### Discovery System
-
-- View all listings
+- Browse available listings
 - Search by location
-- Filter by price
-- View listing details
+- Filter by minimum and maximum rent
+- View listing details and landlord contact information
+- Student dashboard with search entry points
 
-### Trust and Verification System
+### Landlord Listing Management
 
-- Verify landlords
-- Reject landlords
-- Only verified landlords can post listings
+- Landlords start with `PENDING` verification
+- Verified landlords can add accommodation listings
+- Edit listing details
+- Delete own listings
+- View all own listings from the landlord dashboard
 
-## Technologies Used
+### Admin Verification
 
-### Backend
+- Admin dashboard
+- Review pending landlord accounts
+- Approve legitimate landlords
+- Reject landlord applications
+- Keep unverified landlords from managing listings
 
-- Java
-- Servlets
-- EJB (Stateless Session Beans)
+### User Interface
 
-### Frontend
+- Full-width responsive layout across pages
+- Custom logo from `web/images`
+- Modern homepage with richer colors, cards, stats, and CTA sections
+- Outfit font import in `styling.css`
+- Glassmorphism-style top navigation and cards
+- Hover effects and simple CSS animations such as `fadeInUp` and `revealRight`
+- Shared styling for dashboards, forms, tables, errors, access denied, and listing pages
 
-- JSP
-- HTML
-- CSS
+## Security Implementation
 
-### Database
+The project implements basic security in the manner covered by the module notes:
 
-- Apache Derby
+- GlassFish file realm authentication
+- `STUDENT`, `LANDLORD`, and `ADMIN` application roles
+- group-to-role mapping in `web/WEB-INF/glassfish-web.xml`
+- login handled through `request.login(...)`
+- server-side role checks using `SecurityUtil.requireRole(...)`
+- HTTP-only session cookies in `web/WEB-INF/web.xml`
+- basic response security headers
+- password hashing and salting for database users
+- input cleaning and output escaping helpers
+- access denied and error pages
 
-### Server
+### GlassFish File Realm Users
 
-- GlassFish
+Create these users in the GlassFish Admin Console under:
 
-### Development Tool
+`Configurations -> default-config -> Security -> Realms -> file -> Manage Users`
 
-- NetBeans
+Recommended local test users:
 
-### Version Control
+| User ID | Password | Group |
+|---|---|---|
+| `admin@studentresfinder.local` | `Admin@12345` | `ADMIN` |
+| `lerato@studentmail.com` | choose a password | `STUDENT` |
+| `thabo.landlord@mail.com` | choose a password | `LANDLORD` |
 
-- GitHub
+The group names must match the application roles exactly: `STUDENT`, `LANDLORD`, and `ADMIN`.
 
-## Security (GlassFish Realm)
+## Database
 
-This project uses GlassFish Realm for authentication and authorization.
+The app uses Apache Derby.
 
-### Purpose
-
-- Secure login system
-- Manage users and roles
-- Protect restricted pages
-
-### Roles
-
-- Student
-- Landlord
-- Admin
-
-### How It Works
-
-- Users are stored in the Realm
-- Login is validated by GlassFish
-- Access is controlled based on roles
-
-## System Architecture
+Default connection:
 
 ```text
-Presentation Layer (JSP, HTML)
-        ->
-Controller Layer (Servlets)
-        ->
-Business Logic Layer (EJB)
-        ->
-Data Access Layer (DAO)
-        ->
-Database (Derby)
+jdbc:derby://localhost:1527/StudentResFinderDB;create=true
+```
+
+Database script:
+
+```text
+database/studentresfinder.sql
+```
+
+Tables:
+
+| Table | Purpose |
+|---|---|
+| `users` | Stores all user account records |
+| `students` | Stores student profile records |
+| `landlords` | Stores landlord business and verification records |
+| `admins` | Stores admin profile records |
+| `listings` | Stores accommodation listings |
+
+Starter database admin:
+
+```text
+Email: admin@studentresfinder.local
+Password: Admin@12345
 ```
 
 ## Project Structure
 
 ```text
 StudentResFinderWebApp/
-|
+|-- database/
+|   `-- studentresfinder.sql
 |-- src/
-|   |-- model/
-|   |   |-- User.java
-|   |   |-- Student.java
-|   |   |-- Landlord.java
-|   |   |-- Admin.java
-|   |   `-- Listing.java
-|   |
-|   |-- dao/
-|   |   |-- DBConnection.java
-|   |   |-- UserDAO.java
-|   |   |-- ListingDAO.java
-|   |   `-- LandlordDAO.java
-|   |
 |   |-- business/
 |   |   |-- AuthSB.java
 |   |   |-- ListingSB.java
 |   |   |-- SearchSB.java
 |   |   `-- VerificationSB.java
-|   |
-|   `-- servlet/
-|       |-- LoginServlet.java
-|       |-- RegisterServlet.java
-|       |-- LogoutServlet.java
-|       |-- AddListingServlet.java
-|       |-- UpdateListingServlet.java
-|       |-- DeleteListingServlet.java
-|       |-- ViewListingsServlet.java
-|       |-- ViewListingDetailsServlet.java
-|       |-- SearchServlet.java
-|       |-- FilterServlet.java
-|       |-- VerifyLandlordServlet.java
-|       `-- RejectLandlordServlet.java
-|
+|   |-- dao/
+|   |   |-- DBConnection.java
+|   |   |-- LandlordDAO.java
+|   |   |-- ListingDAO.java
+|   |   `-- UserDAO.java
+|   |-- model/
+|   |   |-- Admin.java
+|   |   |-- Landlord.java
+|   |   |-- Listing.java
+|   |   |-- Student.java
+|   |   `-- User.java
+|   |-- servlet/
+|   |   |-- AddListingServlet.java
+|   |   |-- DeleteListingServlet.java
+|   |   |-- FilterServlet.java
+|   |   |-- LoginServlet.java
+|   |   |-- LogoutServlet.java
+|   |   |-- RegisterServlet.java
+|   |   |-- RejectLandlordServlet.java
+|   |   |-- SearchServlet.java
+|   |   |-- UpdateListingServlet.java
+|   |   |-- VerifyLandlordServlet.java
+|   |   |-- ViewListingDetailsServlet.java
+|   |   `-- ViewListingsServlet.java
+|   `-- util/
+|       |-- PasswordUtil.java
+|       `-- SecurityUtil.java
 |-- web/
+|   |-- WEB-INF/
+|   |   |-- glassfish-web.xml
+|   |   `-- web.xml
 |   |-- css/
 |   |   `-- styling.css
-|   |-- index.jsp
-|   |-- login.jsp
-|   |-- register.jsp
-|   |-- studentDashboard.jsp
-|   |-- landlordDashboard.jsp
-|   |-- adminDashboard.jsp
+|   |-- images/
+|   |   |-- StudentResFinder logo.png
+|   |   `-- StudentResFinder-logo-header.png
+|   |-- accessDenied.jsp
 |   |-- addListing.jsp
+|   |-- adminDashboard.jsp
 |   |-- editListing.jsp
+|   |-- error.jsp
+|   |-- index.jsp
+|   |-- landlordDashboard.jsp
+|   |-- login.jsp
 |   |-- myListings.jsp
+|   |-- register.jsp
 |   |-- search.jsp
 |   |-- searchResults.jsp
-|   |-- viewListing.jsp
+|   |-- studentDashboard.jsp
 |   |-- verifyLandlords.jsp
-|   |-- error.jsp
-|   `-- accessDenied.jsp
-|
-`-- database/
-    `-- studentresfinder.sql
+|   `-- viewListing.jsp
+|-- build.xml
+|-- GITHUB_GUIDE.md
+`-- README.md
 ```
 
-## Database Tables
+## Application Flow
 
-| Table | Purpose |
-|---|---|
-| `users` | Stores all users |
-| `students` | Student records |
-| `landlords` | Landlord verification records |
-| `admins` | Admin records |
-| `listings` | Accommodation listings |
+### Login
 
-## System Flow
+```text
+login.jsp -> LoginServlet.do -> GlassFish file realm -> role redirect
+```
+
+### Registration
+
+```text
+register.jsp -> RegisterServlet.do -> AuthSB -> UserDAO / LandlordDAO -> login.jsp
+```
 
 ### Search Listings
 
-`search.jsp` -> `SearchServlet` -> `SearchSB` -> `ListingDAO` -> `Database` -> `searchResults.jsp`
-
-### Add Listing
-
-`addListing.jsp` -> `AddListingServlet` -> `ListingSB` -> `ListingDAO` -> `Database` -> `myListings.jsp`
-
-### Verify Landlord
-
-`verifyLandlords.jsp` -> `VerifyLandlordServlet` -> `VerificationSB` -> `LandlordDAO` -> `Database` -> `verifyLandlords.jsp`
-
-## How to Run
-
-1. Open the project in NetBeans.
-2. Start the GlassFish server.
-3. Configure the Apache Derby database.
-4. Run the SQL script in `database/studentresfinder.sql`.
-5. Configure Realm in the GlassFish Admin Console.
-6. Deploy the project.
-7. Open in browser:
-
 ```text
-http://localhost:8080/StudentResFinderWebApp
+index.jsp or search.jsp -> SearchServlet.do -> SearchSB -> ListingDAO -> searchResults.jsp
 ```
 
-## Key Concepts
+### Manage Listings
 
-- MVC Architecture
-- `HttpSession`
-- Stateless EJB
-- DAO Pattern
-- Role-Based Access Control (RBAC)
-- GlassFish Realm
-- 
-## GitHub Collaboration Rules
+```text
+landlordDashboard.jsp -> add/edit/delete servlet -> ListingSB -> ListingDAO -> myListings.jsp
+```
 
-1. Always pull before working:
-   git pull origin main
+### Verify Landlords
 
-2. Work only on your assigned files.
+```text
+adminDashboard.jsp -> verifyLandlords.jsp -> VerifyLandlordServlet or RejectLandlordServlet -> VerificationSB -> LandlordDAO
+```
+
+## How to Run Locally
+
+1. Open the nested cloned project in NetBeans:
+
+```text
+StudentResFinderWebApp/StudentResFinderWebApp
+```
+
+2. Start Derby on port `1527`.
+
+3. Create or connect to:
+
+```text
+StudentResFinderDB
+```
+
+4. Run:
+
+```text
+database/studentresfinder.sql
+```
+
+5. Start GlassFish.
+
+6. Configure the file realm users and groups listed above.
+
+7. Build and deploy from NetBeans, or run:
+
+```text
+ant clean dist
+```
+
+8. Open the deployed application. The local test deployment used:
+
+```text
+http://localhost:54586/StudentResFinderWebApp/
+```
+
+Your GlassFish may use another HTTP port, commonly `8080`.
+
+## Build Notes
+
+Generated folders are not part of source control:
+
+- `build/`
+- `dist/`
+
+Rebuild them locally using Ant or NetBeans.
+
+## Collaboration Rules
+
+1. Pull before working:
+
+```text
+git pull origin main
+```
+
+2. Work on your assigned files where possible.
 
 3. Do not rename folders without telling the group.
 
@@ -247,12 +306,7 @@ http://localhost:8080/StudentResFinderWebApp
 5. Push small changes often.
 
 6. If the project breaks after your push, report it immediately.
-   
+
 ## Summary
 
-StudentResFinderWebApp is a structured Java web application that:
-
-- Helps students find accommodation
-- Allows landlords to manage listings
-- Ensures security using GlassFish Realm
-- Follows MVC for clean and maintainable design
+StudentResFinderWebApp is now a complete Java EE accommodation platform with MVC structure, Derby persistence, GlassFish security, role-based dashboards, landlord verification, listing management, search, and a modern responsive interface.
